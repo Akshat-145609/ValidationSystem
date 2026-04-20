@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ANH ValidationSystem Generator</title>
+
+<meta name="description"
+content="Generate Scripto Script and Alpha Vault JSON entry for Akshat Network Hub ValidationSystem">
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+<script src="/ValidationSystem/scripts/anh-validator.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#020617;
+color:#e2e8f0;
+}
+
+header{
+text-align:center;
+padding:20px;
+font-size:26px;
+color:#38bdf8;
+}
+
+.container{
+max-width:720px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#0f172a;
+padding:25px;
+border-radius:10px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:6px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:18px;
+background:#38bdf8;
+border:none;
+cursor:pointer;
+font-weight:600;
+}
+
+.code{
+margin-top:25px;
+background:black;
+padding:18px;
+border-radius:8px;
+white-space:pre-wrap;
+font-family:monospace;
+}
+
+.step{
+margin-top:20px;
+}
+
+.hidden{
+display:none;
+}
+
+footer{
+margin-top:40px;
+text-align:center;
+}
+
+footer a{
+margin:10px;
+color:#38bdf8;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<i class="bi bi-shield-lock"></i>
+ValidationSystem Generator
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<!-- STEP 1 -->
+
+<div id="step1" class="step">
+
+<label>Step 1 — Enter Webpage URL</label>
+<input id="url">
+
+<button onclick="step2()">
+Next
+</button>
+
+</div>
+
+
+<!-- STEP 2 -->
+
+<div id="step2" class="step hidden">
+
+<label>Step 2 — Enter Page Title</label>
+<input id="title">
+
+<button onclick="step3()">
+Next
+</button>
+
+</div>
+
+
+<!-- STEP 3 -->
+
+<div id="step3" class="step hidden">
+
+<label>Step 3 — Enter Description</label>
+<input id="description">
+
+<button onclick="step4()">
+Next
+</button>
+
+</div>
+
+
+<!-- STEP 4 -->
+
+<div id="step4" class="step hidden">
+
+<label>Step 4 — Enter Icon URL</label>
+<input id="icon">
+
+<button onclick="generateScripts()">
+Generate Scripts
+</button>
+
+</div>
+
+</div>
+
+
+<!-- STATUS -->
+
+<div class="code" id="status">
+Waiting for inputs
+</div>
+
+
+<!-- SCRIPTO OUTPUT -->
+
+<div class="code"
+contenteditable="true"
+id="scriptoBlock">
+
+Scripto Script will appear here
+
+</div>
+
+<button onclick="copyScripto()">
+Copy Scripto Script
+</button>
+
+
+<!-- VAULT OUTPUT -->
+
+<div class="code"
+contenteditable="true"
+id="vaultBlock">
+
+Vault JSON entry will appear here
+
+</div>
+
+<button onclick="copyVault()">
+Copy Vault JSON
+</button>
+
+
+<button onclick="downloadJSON()">
+Download JSON File
+</button>
+
+</div>
+
+
+<footer>
+
+<a href="#">Homepage</a>
+<a href="#">Feedback</a>
+<a href="#">Medium</a>
+<a href="#">GitHub</a>
+<a href="#">LinkedIn</a>
+
+</footer>
+
+
+<script>
+
+/* STEP FLOW */
+
+function step2(){
+
+document.getElementById("step1").classList.add("hidden")
+document.getElementById("step2").classList.remove("hidden")
+
+}
+
+function step3(){
+
+document.getElementById("step2").classList.add("hidden")
+document.getElementById("step3").classList.remove("hidden")
+
+}
+
+function step4(){
+
+document.getElementById("step3").classList.add("hidden")
+document.getElementById("step4").classList.remove("hidden")
+
+}
+
+
+/* GENERATE UNIQUE ID */
+
+function generateID(){
+
+return "ANH-" +
+Math.random()
+.toString(36)
+.substring(2,9)
+.toUpperCase()
+
+}
+
+
+/* GENERATE OUTPUT */
+
+function generateScripts(){
+
+let url=document.getElementById("url").value
+let title=document.getElementById("title").value
+let description=document.getElementById("description").value
+let icon=document.getElementById("icon").value
+
+if(!url || !title){
+
+alert("URL and Title required")
+return
+
+}
+
+let id=generateID()
+
+
+/* SAFE SCRIPT TAG CREATION */
+
+let openTag='<scr'+'ipt class="Scripto">'
+let closeTag='</scr'+'ipt>'
+
+
+let scripto=
+
+openTag + '\n\n' +
+
+'window.ANH_ID="'+id+'"\n\n' +
+
+'window.ANH_META={\n' +
+
+'url:"'+url+'",\n' +
+'title:"'+title+'",\n' +
+'description:"'+description+'",\n' +
+'icon:"'+icon+'"\n' +
+
+'}\n\n' +
+
+closeTag
+
+
+let vault=
+
+'{\n' +
+
+'"urlId":"'+id+'",\n' +
+'"url":"'+url+'",\n' +
+'"title":"'+title+'",\n' +
+'"description":"'+description+'",\n' +
+'"icon":"'+icon+'",\n' +
+'"tier":"TIER-1",\n' +
+'"status":"active",\n' +
+'"createdBy":"index.htm generator",\n' +
+'"checksum":"AUTO_OPTIONAL",\n' +
+'"lastVerified":"AUTO_RUNTIME"\n' +
+
+'}'
+
+
+document.getElementById("scriptoBlock").innerText=scripto
+document.getElementById("vaultBlock").innerText=vault
+
+document.getElementById("status").innerText=
+"Validation Preview Ready"
+
+}
+
+
+/* COPY FUNCTIONS */
+
+function copyScripto(){
+
+navigator.clipboard.writeText(
+document.getElementById("scriptoBlock").innerText
+)
+
+alert("Scripto copied")
+
+}
+
+
+function copyVault(){
+
+navigator.clipboard.writeText(
+document.getElementById("vaultBlock").innerText
+)
+
+alert("Vault JSON copied")
+
+}
+
+
+/* DOWNLOAD JSON */
+
+function downloadJSON(){
+
+let data=document.getElementById("vaultBlock").innerText
+
+let blob=new Blob([data],
+{type:"application/json"})
+
+let link=document.createElement("a")
+
+link.href=URL.createObjectURL(blob)
+
+link.download="vault-entry.json"
+
+link.click()
+
+}
+
+</script>
+
+</body>
+
+</html>

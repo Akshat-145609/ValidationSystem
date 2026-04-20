@@ -1,0 +1,83 @@
+{
+"vaultVersion":"Alpha-1.1",
+"system":"Akshat Network Hub ValidationSystem",
+"lastUpdated":"AUTO_GENERATED_RUNTIME",
+"description":"Primary trust registry for ANH ecosystem pages. Stores urlId identity signatures generated via Scripto generator homepage.",
+
+"entries":[
+
+{
+"urlId":"ANH-ROOT01",
+"url":"https://akshatnetworkhub.example",
+"title":"Akshat Network Hub",
+"description":"Main ecosystem homepage",
+"icon":"/favicon.ico",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-DOCS01",
+"url":"https://docs.akshatnetworkhub.example",
+"title":"ANH Documentation",
+"description":"Documentation portal",
+"icon":"/docs/favicon.ico",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+}
+
+],
+
+"rules":{
+
+"matchingPolicy":"STRICT_META_MATCH",
+
+"requiredFields":[
+"urlId",
+"url",
+"title",
+"description",
+"icon"
+],
+
+"tierRouting":{
+
+"TIER-1":"direct_trust_lookup",
+"TIER-2":"script_signature_validation",
+"TIER-3":"decision_loop_execution"
+
+},
+
+"fallbackPolicy":"CAUTION_MODE",
+
+"duplicateHandling":"reject",
+
+"domainNormalization":true
+
+},
+
+"routingAgentHints":{
+
+"allowSubdomainTrust":true,
+"allowRelativeIconPaths":true,
+"allowProtocolUpgrade":true
+
+},
+
+"futureExtensions":{
+
+"cloudVaultSync":false,
+"cdnVaultMode":false,
+"signatureHashing":"reserved",
+"publicKeyVerification":"reserved",
+"federatedVaultSupport":"reserved"
+
+}
+
+}

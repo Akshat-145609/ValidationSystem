@@ -1,0 +1,12 @@
+{
+"urlId":"ANH-XXXXXXX",
+"url":"https://example.com/page",
+"title":"Example Page Title",
+"description":"Example page description for identity validation",
+"icon":"/favicon.ico",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+}
