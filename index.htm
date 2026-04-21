@@ -3,17 +3,109 @@
 
 <head>
 
+<!-- ================= BASIC SEO (14) ================= -->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>ANH ValidationSystem Generator</title>
+<title>ANH ValidationSystem Generator | Scripto Script & Alpha Vault JSON Creator</title>
+
+<meta name="title"
+content="ANH ValidationSystem Generator | Scripto Script & Alpha Vault JSON Creator">
 
 <meta name="description"
-content="Generate Scripto Script and Alpha Vault JSON entry for Akshat Network Hub ValidationSystem">
+content="Generate Scripto Script and Alpha Vault JSON entries for Akshat Network Hub ValidationSystem. Create trusted identity metadata for static websites with runtime verification support.">
+
+<meta name="keywords"
+content="ValidationSystem, Scripto Script Generator, Alpha Vault JSON, Static Website Trust System, Metadata Validation Tool, GitHub Pages Identity System">
+
+<meta name="author"
+content="Akshat Network Hub">
+
+<meta name="robots"
+content="index, follow">
+
+<meta name="language"
+content="English">
+
+<meta name="revisit-after"
+content="7 days">
+
+<meta name="distribution"
+content="global">
+
+<meta name="rating"
+content="general">
+
+<meta name="generator"
+content="ANH ValidationSystem Generator | Scripto Script & Alpha Vault JSON Creator">
+
+<!-- ================= ADVANCED SEO (14) ================= -->
+
+<link rel="canonical"
+href="https://akshat-145609.github.io/ValidationSystem/">
+
+<meta property="og:type"
+content="website">
+
+<meta property="og:site_name"
+content="Akshat Network Hub">
+
+<meta property="og:title"
+content="ANH ValidationSystem Generator | Scripto Script & Alpha Vault JSON Creator">
+
+<meta property="og:description"
+content="Generate Scripto Script and Alpha Vault JSON entries for Akshat Network Hub ValidationSystem. Create trusted identity metadata for static websites with runtime verification support.">
+
+<meta property="og:url"
+content="https://akshat-145609.github.io/ValidationSystem/">
+
+<meta property="og:image"
+content="https://akshat-145609.github.io/ValidationSystem/icon.png">
+
+<meta property="og:locale"
+content="en_IN">
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="ANH ValidationSystem Generator | Scripto Script & Alpha Vault JSON Creator">
+
+<meta name="twitter:description"
+content="Generate Scripto Script and Alpha Vault JSON entries for Akshat Network Hub ValidationSystem. Create trusted identity metadata for static websites with runtime verification support.">
+
+<meta name="twitter:image"
+content="icon.png">
+
+<meta name="twitter:creator"
+content="@its.akshatnetworkhub23">
+
+<meta name="twitter:site"
+content="@its.akshatnetworkhub23">
+
+
+<!-- ================= VALID CONSISTENCY ITEMS (4) ================= -->
+
+<link rel="icon"
+href="icon.png">
+
+<link rel="apple-touch-icon"
+href="icon.png">
+
+<meta name="application-name"
+content="ANH ValidationSystem Generator | Scripto Script & Alpha Vault JSON Creator">
+
+<meta name="apple-mobile-web-app-title"
+content="ValidationSystem Generator | Scripto Script & Alpha Vault JSON Creator">
+
+
+<!-- ================= EXISTING DEPENDENCIES ================= -->
 
 <link
 href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
 rel="stylesheet">
+
 
 <script src="/ValidationSystem/scripts/anh-validator.js"></script>
 
@@ -113,7 +205,7 @@ ValidationSystem Generator
 <div id="step1" class="step">
 
 <label>Step 1 — Enter Webpage URL</label>
-<input id="url">
+<input id="url" title="Enter your Website URL">
 
 <button onclick="step2()">
 Next
@@ -127,7 +219,7 @@ Next
 <div id="step2" class="step hidden">
 
 <label>Step 2 — Enter Page Title</label>
-<input id="title">
+<input id="title" title="Enter your website Correct title">
 
 <button onclick="step3()">
 Next
@@ -141,7 +233,7 @@ Next
 <div id="step3" class="step hidden">
 
 <label>Step 3 — Enter Description</label>
-<input id="description">
+<input id="description" title="Enter your website correct description">
 
 <button onclick="step4()">
 Next
@@ -155,7 +247,7 @@ Next
 <div id="step4" class="step hidden">
 
 <label>Step 4 — Enter Icon URL</label>
-<input id="icon">
+<input id="icon" title="Enter URL of Icon of Respective Site">
 
 <button onclick="generateScripts()">
 Generate Scripts
@@ -212,14 +304,84 @@ Download JSON File
 
 <footer>
 
-<a href="#">Homepage</a>
-<a href="#">Feedback</a>
-<a href="#">Medium</a>
-<a href="#">GitHub</a>
-<a href="#">LinkedIn</a>
+<a href="https://akshat-881236.github.io/AkshatNetworkHub/">Homepage</a>
+<a href="https://akshat-881236.github.io/Portfolio-881236/feedback.htm?title=ANH%20ValidationSystem%20Generator&description=ANH%20ValidationSystem%20Generator%20creates%20Scripto%20identity%20scripts%20and%20Alpha%20Vault%20JSON%20entries%20to%20enable%20trusted%20runtime%20verification%20for%20static%20websites%20inside%20the%20Akshat%20Network%20Hub%20ecosystem.&url=https://akshat-145609.github.io/ValidationSystem/">Feedback</a>
+<a href="https://medium.com/@its.akshatnetworkhub23/building-a-lightweight-page-identity-trust-system-for-static-websites-b2c0fb9b2a90">Medium</a>
+<a href="https://github.com/Akshat-145609/ValidationSystem">GitHub</a>
+<a href="https://www.linkedin.com/in/akshat-network-hub/">LinkedIn</a>
 
 </footer>
 
+<script>
+
+/* ===============================
+VAULT DUPLICATE CHECK ENGINE
+=============================== */
+
+async function fetchVaultEntries(){
+
+try{
+
+let response = await fetch("vault/alpha-vault.json")
+
+if(!response.ok) throw "Vault not reachable"
+
+let vault = await response.json()
+
+return vault.entries || []
+
+}catch(e){
+
+console.warn("Vault unavailable — duplicate check skipped")
+
+return []
+
+}
+
+}
+
+
+/* ===============================
+SAFE UNIQUE ID GENERATOR
+=============================== */
+
+async function generateUniqueID(){
+
+let entries = await fetchVaultEntries()
+
+let id
+let exists = true
+
+while(exists){
+
+id = "ANH-" +
+Math.random()
+.toString(36)
+.substring(2,9)
+.toUpperCase()
+
+exists = entries.some(e => e.urlId === id)
+
+}
+
+return id
+
+}
+
+
+/* ===============================
+URL DUPLICATE CHECK
+=============================== */
+
+async function isDuplicateURL(url){
+
+let entries = await fetchVaultEntries()
+
+return entries.some(e => e.url === url)
+
+}
+
+</script>
 
 <script>
 
@@ -246,7 +408,6 @@ document.getElementById("step4").classList.remove("hidden")
 
 }
 
-
 /* GENERATE UNIQUE ID */
 
 function generateID(){
@@ -262,7 +423,7 @@ Math.random()
 
 /* GENERATE OUTPUT */
 
-function generateScripts(){
+async function generateScripts(){
 
 let url=document.getElementById("url").value
 let title=document.getElementById("title").value
@@ -276,16 +437,32 @@ return
 
 }
 
-let id=generateID()
+
+/* CHECK DUPLICATE URL FIRST */
+
+let duplicateURL = await isDuplicateURL(url)
+
+if(duplicateURL){
+
+alert("This URL already exists in alpha-vault.json")
+
+return
+
+}
 
 
-/* SAFE SCRIPT TAG CREATION */
+/* GENERATE UNIQUE ID SAFELY */
+
+let id = await generateUniqueID()
+
+
+/* SAFE SCRIPT TAG BUILD */
 
 let openTag='<scr'+'ipt class="Scripto">'
 let closeTag='</scr'+'ipt>'
 
 
-let scripto=
+let scripto =
 
 openTag + '\n\n' +
 
@@ -303,7 +480,7 @@ openTag + '\n\n' +
 closeTag
 
 
-let vault=
+let vault =
 
 '{\n' +
 
@@ -321,11 +498,11 @@ let vault=
 '}'
 
 
-document.getElementById("scriptoBlock").innerText=scripto
-document.getElementById("vaultBlock").innerText=vault
+document.getElementById("scriptoBlock").innerText = scripto
+document.getElementById("vaultBlock").innerText = vault
 
-document.getElementById("status").innerText=
-"Validation Preview Ready"
+document.getElementById("status").innerText =
+"Unique vault entry generated successfully ✅"
 
 }
 
