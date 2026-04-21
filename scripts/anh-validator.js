@@ -2,7 +2,7 @@
 =========================================================
 ANH VALIDATION ENGINE
 Alpha Runtime Validator + Trust Badge Injector
-Version: Alpha-1.2
+Version: Alpha-1.3
 System: Akshat Network Hub ValidationSystem
 =========================================================
 */
@@ -17,12 +17,18 @@ CONFIG
 =========================================================
 */
 
-const VAULT_PATH = "/vault/alpha-vault.json";
+const VAULT_PATH =
+window.location.origin +
+"/ValidationSystem/vault/alpha-vault.json";
+
+const AUTO_HIDE_TIME = 6000;
 
 const BADGE_STYLES = {
+
 trusted: "#16c784",
 caution: "#f5a623",
 unverified: "#ff4d4f"
+
 };
 
 
@@ -52,10 +58,12 @@ return url;
 function strictMatch(metaA, metaB) {
 
 return (
+
 normalizeURL(metaA.url) === normalizeURL(metaB.url)
 && metaA.title === metaB.title
 && metaA.description === metaB.description
 && metaA.icon === metaB.icon
+
 );
 
 }
@@ -71,37 +79,104 @@ function injectBadge(status, tier, message) {
 
 if (document.getElementById("anh-trust-badge")) return;
 
-let badge = document.createElement("div");
+let badgeWrapper = document.createElement("div");
 
-badge.id = "anh-trust-badge";
+badgeWrapper.id = "anh-trust-badge";
 
-badge.innerHTML = `
-<div style="
+badgeWrapper.style = `
 position:fixed;
 bottom:20px;
 right:20px;
 z-index:99999;
 font-family:system-ui;
+`;
+
+badgeWrapper.innerHTML = `
+
+<div style="
 background:${BADGE_STYLES[status]};
 color:white;
-padding:12px 18px;
-border-radius:12px;
+padding:14px 20px;
+border-radius:14px;
 box-shadow:0 6px 18px rgba(0,0,0,.25);
 font-size:14px;
-line-height:1.4;
+line-height:1.5;
 max-width:260px;
+animation:fadeSlide .35s ease;
 ">
 
-<b>ANH Trust Status</b><br>
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<b>ANH Trust Status</b>
+
+<button id="anh-close-btn"
+style="
+background:transparent;
+border:none;
+color:white;
+font-size:16px;
+cursor:pointer;
+">
+✕
+</button>
+
+</div>
+
+<div style="margin-top:6px">
 
 ${message}<br>
-
 Tier: ${tier}
 
 </div>
+
+</div>
+
+<style>
+
+@keyframes fadeSlide {
+
+from {
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to {
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+</style>
+
 `;
 
-document.body.appendChild(badge);
+document.body.appendChild(badgeWrapper);
+
+
+/* CLOSE BUTTON */
+
+document
+.getElementById("anh-close-btn")
+.onclick = () => badgeWrapper.remove();
+
+
+/* AUTO DISMISS */
+
+setTimeout(() => {
+
+if (badgeWrapper)
+badgeWrapper.remove();
+
+}, AUTO_HIDE_TIME);
 
 }
 
@@ -131,9 +206,25 @@ try {
 
 let response = await fetch(VAULT_PATH);
 
-if (!response.ok) throw "Vault load failed";
+if (!response.ok)
+throw "Vault load failed";
+
 
 let vault = await response.json();
+
+
+if (!vault.entries) {
+
+injectBadge(
+"unverified",
+"UNKNOWN",
+"Vault format invalid"
+);
+
+return;
+
+}
+
 
 let entry = vault.entries.find(
 e => e.urlId === window.ANH_ID
@@ -225,8 +316,10 @@ injectBadge(
 
 }
 
+}
 
-} catch (error) {
+
+catch (error) {
 
 injectBadge(
 "unverified",
@@ -234,7 +327,10 @@ injectBadge(
 "Vault unreachable"
 );
 
-console.warn("ANH Validator Error:", error);
+console.warn(
+"ANH Validator Error:",
+error
+);
 
 }
 
@@ -247,6 +343,9 @@ BOOT ENGINE
 =========================================================
 */
 
-window.addEventListener("DOMContentLoaded", validatePage);
+window.addEventListener(
+"DOMContentLoaded",
+validatePage
+);
 
 })();
