@@ -7,11 +7,11 @@
 "entries":[
 
 {
-"urlId":"ANH-ROOT01",
-"url":"https://akshatnetworkhub.example",
-"title":"Akshat Network Hub",
-"description":"Main ecosystem homepage",
-"icon":"/favicon.ico",
+"urlId":"ANH-PJAOBG1",
+"url":"https://akshat-145609.github.io/ValidationSystem/",
+"title":"ANH ValidationSystem Generator | Scripto Script & Alpha Vault JSON Creator",
+"description":"Generate Scripto Script and Alpha Vault JSON entries for Akshat Network Hub ValidationSystem. Create trusted identity metadata for static websites with runtime verification support.",
+"icon":"https://akshat-145609.github.io/ValidationSystem/icon.png",
 "tier":"TIER-1",
 "status":"active",
 "createdBy":"index.htm generator",
