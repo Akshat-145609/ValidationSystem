@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset
+xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+xmlns:xhtml="http://www.w3.org/1999/xhtml"
+xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+<!-- ROOT LANDING -->
+
+<url>
+<loc>
+https://akshat-145609.github.io/ValidationSystem/
+</loc>
+<changefreq>weekly</changefreq>
+<priority>1.0</priority>
+</url>
+
+
+<!-- GENERATOR TOOL -->
+
+<url>
+<loc>
+https://akshat-145609.github.io/ValidationSystem/index.htm
+</loc>
+<changefreq>weekly</changefreq>
+<priority>0.95</priority>
+</url>
+
+
+<!-- INSPECTOR TOOL -->
+
+<url>
+<loc>
+https://akshat-145609.github.io/ValidationSystem/inspector.htm
+</loc>
+<changefreq>weekly</changefreq>
+<priority>0.95</priority>
+</url>
+
+
+<!-- VALIDATOR ENGINE (SCRIPT RESOURCE PAGE SUPPORT INDEXING CONTEXT) -->
+
+<url>
+<loc>
+https://akshat-145609.github.io/ValidationSystem/scripts/anh-validator.js
+</loc>
+<changefreq>monthly</changefreq>
+<priority>0.70</priority>
+</url>
+
+
+<!-- VAULT SCHEMA DOCUMENTATION CONTEXT (NOT JSON ITSELF) -->
+
+<url>
+<loc>
+https://akshat-145609.github.io/ValidationSystem/vault/
+</loc>
+<changefreq>monthly</changefreq>
+<priority>0.60</priority>
+</url>
+
+
+<!-- PROJECT ICON -->
+
+<url>
+<loc>
+https://akshat-145609.github.io/ValidationSystem/icon.png
+</loc>
+<image:image>
+<image:loc>
+https://akshat-145609.github.io/ValidationSystem/icon.png
+</image:loc>
+</image:image>
+<changefreq>yearly</changefreq>
+<priority>0.40</priority>
+</url>
+
+
+<!-- MEDIUM ARTICLE DOCUMENTATION (ARCHITECTURE REFERENCE) -->
+
+<url>
+<loc>
+https://medium.com/@its.akshatnetworkhub23/building-a-lightweight-page-identity-trust-system-for-static-websites-b2c0fb9b2a90
+</loc>
+<changefreq>yearly</changefreq>
+<priority>0.60</priority>
+</url>
+
+
+</urlset>

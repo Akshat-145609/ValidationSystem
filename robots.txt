@@ -1,0 +1,30 @@
+# =========================================
+# ANH ValidationSystem Robots Configuration
+# Maintained by Akshat Network Hub
+# Static Identity Trust Infrastructure
+# =========================================
+
+User-agent: *
+
+# Allow public tools
+Allow: /ValidationSystem/
+Allow: /ValidationSystem/index.htm
+Allow: /ValidationSystem/inspector.htm
+
+# Allow assets
+Allow: /ValidationSystem/*.js
+Allow: /ValidationSystem/*.css
+Allow: /ValidationSystem/*.png
+Allow: /ValidationSystem/*.ico
+
+# Block internal vault metadata
+Disallow: /ValidationSystem/vault/
+
+# Block generated script workspace
+Disallow: /ValidationSystem/generated/
+
+# Block experimental folders (future safe)
+Disallow: /ValidationSystem/temp/
+
+# Sitemap reference
+Sitemap: https://akshat-145609.github.io/ValidationSystem/sitemap.xml
