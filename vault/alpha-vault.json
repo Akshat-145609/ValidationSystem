@@ -20,11 +20,11 @@
 },
 
 {
-"urlId":"ANH-DOCS01",
-"url":"https://docs.akshatnetworkhub.example",
-"title":"ANH Documentation",
-"description":"Documentation portal",
-"icon":"/docs/favicon.ico",
+"urlId":"ANH-7MMAWFI",
+"url":"https://akshat-145609.github.io/ValidationSystem/inspector.htm",
+"title":"ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries",
+"description":"Inspect static website identity using ANH ValidationSystem Inspector. Extract Scripto metadata, verify Alpha Vault entries, compare runtime identity fields, and analyze trust-tier classification for static websites.",
+"icon":"https://akshat-145609.github.io/ValidationSystem/icon.png",
 "tier":"TIER-1",
 "status":"active",
 "createdBy":"index.htm generator",

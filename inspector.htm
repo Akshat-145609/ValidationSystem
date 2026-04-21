@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script class="Scripto">
+
+window.ANH_ID="ANH-7MMAWFI"
+
+window.ANH_META={
+url:"https://akshat-145609.github.io/ValidationSystem/inspector.htm",
+title:"ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries",
+description:"Inspect static website identity using ANH ValidationSystem Inspector. Extract Scripto metadata, verify Alpha Vault entries, compare runtime identity fields, and analyze trust-tier classification for static websites.",
+icon:"https://akshat-145609.github.io/ValidationSystem/icon.png"
+}
+
+</script>
+<!-- ================= BASIC SEO (14) ================= -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries</title>
+
+<meta name="title"
+content="ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries">
+
+<meta name="description"
+content="Inspect static website identity using ANH ValidationSystem Inspector. Extract Scripto metadata, verify Alpha Vault entries, compare runtime identity fields, and analyze trust-tier classification for static websites.">
+
+<meta name="keywords"
+content="ValidationSystem Inspector, Scripto metadata verifier, Alpha Vault checker, Static website identity inspector, GitHub Pages trust verification, ANH ValidationSystem tool">
+
+<meta name="author"
+content="Akshat Network Hub">
+
+<meta name="robots"
+content="index, follow">
+
+<meta name="language"
+content="English">
+
+<meta name="revisit-after"
+content="7 days">
+
+<meta name="distribution"
+content="global">
+
+<meta name="rating"
+content="general">
+
+<meta name="verifier"
+content="ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries">
+
+<!-- ================= ADVANCED SEO (14) ================= -->
+
+<link rel="canonical"
+href="https://akshat-145609.github.io/ValidationSystem/inspector.htm">
+
+<meta property="og:type"
+content="website">
+
+<meta property="og:site_name"
+content="Akshat Network Hub">
+
+<meta property="og:title"
+content="ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries">
+
+<meta property="og:description"
+content="Inspect static website identity using ANH ValidationSystem Inspector. Extract Scripto metadata, verify Alpha Vault entries, compare runtime identity fields, and analyze trust-tier classification for static websites.">
+
+<meta property="og:url"
+content="https://akshat-145609.github.io/ValidationSystem/inspector.htm">
+
+<meta property="og:image"
+content="https://akshat-145609.github.io/ValidationSystem/icon.png">
+
+<meta property="og:locale"
+content="en_IN">
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries">
+
+<meta name="twitter:description"
+content="Inspect static website identity using ANH ValidationSystem Inspector. Extract Scripto metadata, verify Alpha Vault entries, compare runtime identity fields, and analyze trust-tier classification for static websites.">
+
+<meta name="twitter:image"
+content="https://akshat-145609.github.io/ValidationSystem/icon.png">
+
+<meta name="twitter:creator"
+content="@its.akshatnetworkhub23">
+
+<meta name="twitter:site"
+content="@its.akshatnetworkhub23">
+
+
+<!-- ================= VALID CONSISTENCY ITEMS (4) ================= -->
+
+<link rel="icon"
+href="https://akshat-145609.github.io/ValidationSystem/favicon.ico">
+
+<link rel="apple-touch-icon"
+href="https://akshat-145609.github.io/ValidationSystem/favicon.ico">
+
+<meta name="application-name"
+content="ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries">
+
+<meta name="apple-mobile-web-app-title"
+content="ANH ValidationSystem Inspector | Verify Scripto Identity & Alpha Vault Entries">
+
+<script src="/ValidationSystem/scripts/anh-validator.js"></script>
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#020617;
+color:#e2e8f0;
+}
+
+header{
+text-align:center;
+padding:20px;
+font-size:26px;
+color:#38bdf8;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#0f172a;
+padding:25px;
+border-radius:10px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:6px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:18px;
+background:#38bdf8;
+border:none;
+cursor:pointer;
+font-weight:600;
+}
+
+.code{
+margin-top:20px;
+background:black;
+padding:18px;
+border-radius:8px;
+white-space:pre-wrap;
+font-family:monospace;
+max-height:300px;
+overflow:auto;
+}
+
+.match{color:#16c784}
+.mismatch{color:#ff4d4f}
+
+.tier1{color:#16c784;font-weight:bold}
+.tier2{color:#38bdf8;font-weight:bold}
+.tier3{color:#f5a623;font-weight:bold}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+ANH ValidationSystem Inspector
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<label>Enter Webpage URL</label>
+
+<input id="url" title="Enter Akshat Network Hub Site URL">
+
+<button onclick="inspectPage()">
+Inspect Page Identity
+</button>
+
+</div>
+
+
+<div class="code" id="status">
+Waiting for URL
+</div>
+
+
+<div class="code" id="scripto">
+Scripto block will appear here
+</div>
+
+
+<div class="code" id="comparison">
+Metadata comparison will appear here
+</div>
+
+
+<div class="code" id="vault">
+Vault JSON entry will appear here
+</div>
+
+</div>
+
+
+<script>
+
+/*
+==============================
+CONFIG
+==============================
+*/
+
+const VAULT_PATH =
+window.location.origin +
+"/ValidationSystem/vault/alpha-vault.json";
+
+
+/*
+==============================
+SMART SOURCE FETCH ENGINE
+==============================
+*/
+
+async function fetchSource(url){
+
+const proxies = [
+
+"https://api.allorigins.win/raw?url=",
+"https://corsproxy.io/?"
+
+];
+
+for(let proxy of proxies){
+
+try{
+
+let res = await fetch(proxy + encodeURIComponent(url));
+
+if(res.ok){
+
+return await res.text();
+
+}
+
+}catch{}
+
+}
+
+throw "Source fetch failed";
+
+}
+
+
+/*
+==============================
+EXTRACT SCRIPTO
+==============================
+*/
+
+function extractScripto(source){
+
+let match =
+source.match(
+/<script\s+class="Scripto">([\s\S]*?)<\/script>/i
+);
+
+return match ? match[1] : null;
+
+}
+
+
+/*
+==============================
+PARSE META OBJECT
+==============================
+*/
+
+function parseMeta(script){
+
+let url =
+script.match(/url:"(.*?)"/);
+
+let title =
+script.match(/title:"(.*?)"/);
+
+let description =
+script.match(/description:"(.*?)"/);
+
+let icon =
+script.match(/icon:"(.*?)"/);
+
+let id =
+script.match(/ANH_ID="(.*?)"/);
+
+return {
+
+id:id?.[1],
+url:url?.[1],
+title:title?.[1],
+description:description?.[1],
+icon:icon?.[1]
+
+};
+
+}
+
+
+/*
+==============================
+FETCH VAULT ENTRY
+==============================
+*/
+
+async function fetchVaultEntry(id){
+
+let response =
+await fetch(VAULT_PATH);
+
+let vault =
+await response.json();
+
+return vault.entries.find(
+e => e.urlId === id
+);
+
+}
+
+
+/*
+==============================
+COMPARE META
+==============================
+*/
+
+function compareMeta(local, vault){
+
+let result="";
+
+for(let key of ["url","title","description","icon"]){
+
+if(local[key]===vault[key]){
+
+result+=`✔ ${key} match\n`;
+
+}else{
+
+result+=`✖ ${key} mismatch\n`;
+
+}
+
+}
+
+return result;
+
+}
+
+
+/*
+==============================
+TIER BADGE ENGINE
+==============================
+*/
+
+function tierBadge(tier){
+
+if(tier==="TIER-1") return "tier1";
+if(tier==="TIER-2") return "tier2";
+return "tier3";
+
+}
+
+
+/*
+==============================
+MAIN ENGINE
+==============================
+*/
+
+async function inspectPage(){
+
+let url=document.getElementById("url").value;
+
+if(!url){
+
+alert("Enter URL");
+
+return;
+
+}
+
+
+document.getElementById("status").innerText =
+"Fetching page source...";
+
+
+try{
+
+let source =
+await fetchSource(url);
+
+
+let scripto =
+extractScripto(source);
+
+
+if(!scripto){
+
+document.getElementById("status").innerText =
+"No Scripto script detected";
+
+return;
+
+}
+
+
+document.getElementById("scripto").innerText =
+scripto;
+
+
+let meta =
+parseMeta(scripto);
+
+
+document.getElementById("status").innerText =
+"Scripto detected → " + meta.id;
+
+
+let entry =
+await fetchVaultEntry(meta.id);
+
+
+if(!entry){
+
+document.getElementById("vault").innerText =
+"No vault entry found";
+
+return;
+
+}
+
+
+document.getElementById("vault").innerText =
+JSON.stringify(entry,null,2);
+
+
+let comparison =
+compareMeta(meta,entry);
+
+
+document.getElementById("comparison").innerText =
+comparison;
+
+
+document.getElementById("status").innerHTML +=
+`<br><span class="${tierBadge(entry.tier)}">
+Trust Level: ${entry.tier}
+</span>`;
+
+
+}catch(e){
+
+document.getElementById("status").innerText =
+"Inspection failed (CORS or proxy blocked)";
+
+console.warn(e);
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
