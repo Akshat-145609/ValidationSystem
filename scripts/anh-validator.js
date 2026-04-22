@@ -17,9 +17,7 @@ CONFIG
 =========================================================
 */
 
-const VAULT_PATH =
-window.location.origin +
-"/ValidationSystem/vault/alpha-vault.json";
+const VAULT_PATH = "https://akshat-145609.github.io/ValidationSystem/vault/alpha-vault.json";
 
 const AUTO_HIDE_TIME = 6000;
 
