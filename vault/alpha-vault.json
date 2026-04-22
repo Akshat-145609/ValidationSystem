@@ -43,6 +43,71 @@
 "createdBy":"index.htm generator",
 "checksum":"AUTO_OPTIONAL",
 "lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-PKA4D4M",
+"url":"https://akshat-145609.github.io/ValidationSystem/404.html",
+"title":"Page Not Found | ANH ValidationSystem",
+"description":"Custom 404.html page for ANH Validation System created and maintain by Akshat Network Hub.",
+"icon":"https://akshat-145609.github.io/ValidationSystem/icon.png",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-9BTUC56",
+"url":"https://akshat-881236.github.io/Portfolio-881236/feedback.htm",
+"title":"Feedback & Improvement | Akshat Network Hub",
+"description":"Submit structured feedback or improvement suggestions for Akshat Network Hub pages. No personal data required.",
+"icon":"",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-3R3GKYM",
+"url":"https://akshat-881236.github.io/Portfolio-881236/file_manager.htm",
+"title":"Smart File Manager - Local Demo Version",
+"description":"",
+"icon":"",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-C85ZYT9",
+"url":"https://akshat-881236.github.io/Portfolio-881236/WebsiteManager.htm",
+"title":"Personal Website Manager (LocalStorage SPA)",
+"description":"Organize website links/pages inside folders. Data stored in your browser.",
+"icon":"",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-Q7BX27E",
+"url":"https://akshat-881236.github.io/Portfolio-881236/localStorage.htm",
+"title":"LocalStorage Manager — JSON Only + Accounts + Rulebooks (Auth Locked)",
+"description":"Access to the LocalStorage editor, recycle bin, recovery and debugging tools is restricted. Please sign up & login, or sign in as Admin to continue.",
+"icon":"",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
 }
 
 ],

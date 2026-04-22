@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ANH Verified Sites Dashboard</title>
+
+<meta name="description"
+content="Explore verified projects of Akshat Network Hub validated via ANH ValidationSystem Alpha Vault trust architecture.">
+
+<meta name="robots"
+content="index,follow">
+
+<link rel="canonical"
+href="https://akshat-145609.github.io/ValidationSystem/Dashboard.htm">
+
+<meta property="og:title"
+content="ANH Verified Sites Dashboard">
+
+<meta property="og:description"
+content="Explore verified projects of Akshat Network Hub validated via ANH ValidationSystem Alpha Vault trust architecture.">
+
+<meta property="og:type"
+content="website">
+
+<meta name="twitter:image"
+content="icon.png">
+
+<meta name="twitter:creator"
+content="@its.akshatnetworkhub23">
+
+<meta name="twitter:site"
+content="@its.akshatnetworkhub23">
+
+
+<!-- ================= VALID CONSISTENCY ITEMS (4) ================= -->
+
+<link rel="icon"
+href="icon.png">
+
+<link rel="apple-touch-icon"
+href="icon.png">
+
+<style>
+
+/* =============================
+GLOBAL STYLE
+============================= */
+
+body{
+margin:0;
+font-family:system-ui;
+background:#020617;
+color:white;
+}
+
+
+/* HEADER */
+
+header{
+padding:25px;
+font-size:24px;
+font-weight:600;
+border-bottom:1px solid #1e293b;
+}
+
+
+/* SEARCH */
+
+.searchbar{
+
+padding:15px;
+
+}
+
+input{
+
+width:100%;
+padding:12px;
+border-radius:8px;
+border:none;
+font-size:15px;
+}
+
+
+/* GRID */
+
+.grid{
+
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(260px,1fr));
+
+gap:22px;
+padding:25px;
+
+}
+
+
+/* CARD */
+
+.card{
+
+background:#020617;
+border:1px solid #1e293b;
+border-radius:14px;
+padding:18px;
+transition:.25s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+}
+
+
+/* ICON */
+
+.icon{
+
+width:45px;
+height:45px;
+
+}
+
+
+/* TITLE */
+
+.title{
+
+font-size:18px;
+margin-top:8px;
+
+}
+
+
+/* DESC */
+
+.desc{
+
+font-size:13px;
+opacity:.8;
+margin-top:6px;
+
+}
+
+
+/* BADGE */
+
+.badge{
+
+display:inline-block;
+padding:4px 10px;
+border-radius:8px;
+margin-top:10px;
+font-size:12px;
+
+}
+
+
+/* BUTTON */
+
+.visit{
+
+margin-top:14px;
+display:inline-block;
+padding:8px 14px;
+background:#0f172a;
+border-radius:6px;
+text-decoration:none;
+color:white;
+
+}
+
+
+/* TIER COLORS */
+
+.t1{background:#16c784;}
+.t2{background:#3b82f6;}
+.t3{background:#f59e0b;}
+.t0{background:#ff4d4f;}
+
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+header{
+font-size:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+Akshat Network Hub Verified Projects
+
+</header>
+
+
+<div class="searchbar">
+
+<input
+type="text"
+placeholder="Search project title..."
+onkeyup="filterCards(this.value)">
+
+</div>
+
+
+<div id="grid"
+class="grid"></div>
+
+
+<script>
+
+/*
+=====================================
+CONFIG
+=====================================
+*/
+
+const VAULT="/ValidationSystem/vault/alpha-vault.json";
+
+
+/*
+=====================================
+LOAD DATA
+=====================================
+*/
+
+async function loadVault(){
+
+try{
+
+let res=await fetch(VAULT);
+
+let data=await res.json();
+
+renderCards(data.entries);
+
+}catch{
+
+document.getElementById("grid")
+.innerHTML="Vault unavailable";
+
+}
+
+}
+
+
+/*
+=====================================
+RENDER CARDS
+=====================================
+*/
+
+function renderCards(entries){
+
+let html="";
+
+entries.forEach(e=>{
+
+html+=`
+
+<div class="card"
+data-title="${e.title.toLowerCase()}">
+
+<img
+src="${e.icon}"
+class="icon">
+
+<div class="title">
+
+${e.title}
+
+</div>
+
+<div class="desc">
+
+${e.description}
+
+</div>
+
+<div class="badge ${tierClass(e.tier)}">
+
+${e.tier}
+
+</div>
+
+<br>
+
+<a
+href="${e.url}"
+target="_blank"
+class="visit">
+
+Visit Site
+
+</a>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("grid")
+.innerHTML=html;
+
+}
+
+
+/*
+=====================================
+TIER CLASS
+=====================================
+*/
+
+function tierClass(t){
+
+if(t==="TIER-1")return"t1";
+if(t==="TIER-2")return"t2";
+if(t==="TIER-3")return"t3";
+
+return"t0";
+
+}
+
+
+/*
+=====================================
+SEARCH FILTER
+=====================================
+*/
+
+function filterCards(text){
+
+text=text.toLowerCase();
+
+document.querySelectorAll(".card")
+
+.forEach(c=>{
+
+c.style.display=
+
+c.dataset.title.includes(text)
+
+?"block"
+
+:"none";
+
+});
+
+}
+
+
+/*
+=====================================
+BOOT
+=====================================
+*/
+
+loadVault();
+
+</script>
+
+
+<!-- JSON-LD -->
+
+<script type="application/ld+json">
+
+{
+"@context":"https://schema.org",
+"@type":"SoftwareApplication",
+"name":"ANH Verified Sites Dashboard",
+"applicationCategory":"DeveloperTool",
+"operatingSystem":"Web",
+"creator":{
+"@type":"Organization",
+"name":"Akshat Network Hub"
+}
+}
+
+</script>
+
+
+</body>
+</html>
