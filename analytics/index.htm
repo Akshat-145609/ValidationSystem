@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<script class="Scripto">
+
+window.ANH_ID="ANH-AVJJB71"
+
+window.ANH_META={
+url:"https://akshat-145609.github.io/ValidationSystem/analytics/index.htm",
+title:"ANH Consistency Analytics Dashboard | Akshat Network Hub Validation Console",
+description:"Professional validation console verifying metadata integrity, Scripto signature match, OG consistency, JSON-LD presence and trust tier accuracy across Akshat Network Hub verified projects.",
+icon:"https://akshat-145609.github.io/ValidationSystem/ANH.png"
+}
+
+</script>
+
+<script src="/ValidationSystem/scripts/anh-validator.js"></script>
+<!-- ===============================
+CORE SEO FOUNDATION
+=============================== -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ANH Consistency Analytics Dashboard | Akshat Network Hub Validation Console</title>
+
+<meta name="title"
+content="ANH Consistency Analytics Dashboard | Akshat Network Hub Validation Console">
+
+<meta name="description"
+content="Professional validation console verifying metadata integrity, Scripto signature match, OG consistency, JSON-LD presence and trust tier accuracy across Akshat Network Hub verified projects.">
+
+<meta name="keywords"
+content="ANH validation dashboard, metadata consistency checker, scripto validator, vault integrity checker, trust analytics console">
+
+<meta name="robots"
+content="index,follow,max-image-preview:large">
+
+<meta name="author"
+content="Akshat Network Hub">
+
+<meta name="generator"
+content="ANH ValidationSystem">
+
+<meta name="application-name"
+content="ANH Analytics Console">
+
+<meta name="color-scheme"
+content="dark light">
+
+<link rel="canonical"
+href="https://akshat-145609.github.io/ValidationSystem/analytics/index.htm">
+
+<meta name="referrer"
+content="origin-when-cross-origin">
+
+<link rel="icon" href="https://akshat-145609.github.io/ValidationSystem/ANH.png">
+<!-- ===============================
+OPEN GRAPH SEO
+=============================== -->
+
+<meta property="og:type" content="website">
+<meta property="og:title"
+content="ANH Consistency Analytics Dashboard">
+<meta property="og:description"
+content="Professional validation console verifying metadata integrity, Scripto signature match, OG consistency, JSON-LD presence and trust tier accuracy across Akshat Network Hub verified projects.">
+<meta property="og:url"
+content="https://akshat-145609.github.io/ValidationSystem/analytics/index.htm">
+<meta property="og:site_name"
+content="Akshat Network Hub">
+
+<!-- ===============================
+TWITTER SEO
+=============================== -->
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="ANH Consistency Analytics Dashboard">
+
+<meta name="twitter:description"
+content="Session-based metadata integrity analytics console powered by Alpha Vault.">
+
+<!-- ===============================
+PERFORMANCE SEO TAGS
+=============================== -->
+
+<meta http-equiv="X-UA-Compatible"
+content="IE=edge">
+
+<meta http-equiv="content-language"
+content="en">
+
+<meta name="format-detection"
+content="telephone=no">
+
+<meta name="mobile-web-app-capable"
+content="yes">
+
+<meta name="apple-mobile-web-app-capable"
+content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+content="black-translucent">
+
+<!-- ===============================
+STRUCTURED DATA SEO
+=============================== -->
+
+<script type="application/ld+json">
+
+{
+"@context":"https://schema.org",
+"@type":"SoftwareApplication",
+"name":"ANH Consistency Analytics Dashboard",
+"applicationCategory":"DeveloperTool",
+"operatingSystem":"Web",
+"creator":{
+"@type":"Organization",
+"name":"Akshat Network Hub"
+}
+}
+
+</script>
+
+<!-- ===============================
+PRODUCTION CSS UI SYSTEM
+=============================== -->
+
+<style>
+
+/* =====================================
+GLOBAL FOUNDATION
+===================================== */
+
+:root{
+
+--bg:#020617;
+--panel:#0f172a;
+--accent:#16c784;
+--border:#1e293b;
+--text:#e2e8f0;
+--muted:#94a3b8;
+
+}
+
+body{
+
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:system-ui,-apple-system,Segoe UI;
+
+display:flex;
+min-height:100vh;
+
+}
+
+
+/* =====================================
+SIDEBAR
+===================================== */
+
+.sidebar{
+
+width:260px;
+background:var(--panel);
+border-right:1px solid var(--border);
+padding:20px;
+
+}
+
+.sidebar h3{
+
+margin-top:0;
+
+}
+
+.session{
+
+background:#020617;
+padding:10px;
+margin-bottom:10px;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+
+/* =====================================
+MAIN DASHBOARD
+===================================== */
+
+.main{
+
+flex:1;
+padding:30px;
+
+}
+
+
+/* =====================================
+CARD GRID
+===================================== */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:22px;
+
+}
+
+
+/* =====================================
+CARD UI
+===================================== */
+
+.card{
+
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:14px;
+padding:20px;
+
+transition:.25s;
+
+}
+
+.card:hover{
+
+transform:translateY(-6px);
+
+}
+
+
+/* =====================================
+SCORE BADGE
+===================================== */
+
+.score{
+
+font-size:28px;
+color:var(--accent);
+
+}
+
+
+/* =====================================
+TOTAL PANEL
+===================================== */
+
+.summary{
+
+margin-top:30px;
+font-size:20px;
+
+}
+
+
+/* =====================================
+RESPONSIVE MOBILE
+===================================== */
+
+@media(max-width:900px){
+
+body{
+
+flex-direction:column;
+
+}
+
+.sidebar{
+
+width:100%;
+
+display:flex;
+
+overflow:auto;
+
+}
+
+}
+
+
+/* =====================================
+TABLET MODE
+===================================== */
+
+@media(max-width:600px){
+
+.main{
+
+padding:20px;
+
+}
+
+.score{
+
+font-size:22px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h3>Sessions</h3>
+
+<div id="sessions"></div>
+
+</div>
+
+
+<!-- MAIN PANEL -->
+
+<div class="main">
+
+<h2>Current Validation Session</h2>
+
+<div id="grid"
+class="grid"></div>
+
+<div id="summary"
+class="summary"></div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+INDEXEDDB
+===================================== */
+
+let db;
+
+let request=indexedDB.open(
+
+"ANH_ANALYTICS_DB",
+
+2
+
+);
+
+request.onupgradeneeded=e=>{
+
+db=e.target.result;
+
+db.createObjectStore(
+
+"sessions",
+
+{keyPath:"id"}
+
+);
+
+};
+
+
+request.onsuccess=e=>{
+
+db=e.target.result;
+
+boot();
+
+};
+
+
+/* =====================================
+BOOT
+===================================== */
+
+function boot(){
+
+loadVault();
+
+loadSessions();
+
+}
+
+
+/* =====================================
+FETCH VAULT
+===================================== */
+
+async function loadVault(){
+
+let res=
+
+await fetch("/ValidationSystem/vault/alpha-vault.json");
+
+let vault=
+
+await res.json();
+
+analyze(vault.entries);
+
+}
+
+
+/* =====================================
+VALIDATION ENGINE
+===================================== */
+
+async function analyze(entries){
+
+let sessionID=Date.now();
+
+let results=[];
+
+let total=0;
+
+
+for(let site of entries){
+
+let score=0;
+
+try{
+
+let html=
+
+await fetch(site.url)
+
+.then(r=>r.text());
+
+
+if(html.includes(site.urlId)) score+=4;
+
+if(html.includes(site.title)) score++;
+
+if(html.includes(site.description)) score++;
+
+if(html.includes("og:title")) score++;
+
+if(html.includes("twitter:card")) score++;
+
+if(html.includes("application/ld+json")) score++;
+
+if(html.includes("rel=\"icon\"")) score++;
+
+}catch{}
+
+
+results.push({
+
+title:site.title,
+
+url:site.url,
+
+score
+
+});
+
+total+=score;
+
+}
+
+
+render(results,total);
+
+saveSession(
+
+sessionID,
+
+results,
+
+total
+
+);
+
+}
+
+
+/* =====================================
+RENDER UI
+===================================== */
+
+function render(results,total){
+
+let html="";
+
+results.forEach(r=>{
+
+html+=`
+
+<div class="card">
+
+<b>${r.title}</b>
+
+<div>${r.url}</div>
+
+<div class="score">
+
+${r.score}/10
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("grid")
+
+.innerHTML=html;
+
+
+document.getElementById("summary")
+
+.innerHTML=
+
+"Consistency Accuracy: "
+
++
+
+Math.round(
+
+(total/(results.length*10))*100
+
+)
+
++"%";
+
+}
+
+
+/* =====================================
+SAVE SESSION
+===================================== */
+
+function saveSession(
+
+id,data,total
+
+){
+
+let tx=
+
+db.transaction(
+
+"sessions",
+
+"readwrite"
+
+);
+
+
+tx.objectStore(
+
+"sessions"
+
+).put({
+
+id,data,total
+
+});
+
+
+loadSessions();
+
+}
+
+
+/* =====================================
+LOAD SESSION LIST
+===================================== */
+
+function loadSessions(){
+
+let tx=
+
+db.transaction(
+
+"sessions",
+
+"readonly"
+
+);
+
+let store=
+
+tx.objectStore(
+
+"sessions"
+
+);
+
+let req=
+
+store.getAll();
+
+
+req.onsuccess=e=>{
+
+let html="";
+
+e.target.result.forEach(s=>{
+
+html+=
+
+`<div class="session"
+
+onclick="restore(${s.id})">
+
+Session ${s.id}
+
+</div>`;
+
+});
+
+
+document.getElementById(
+
+"sessions"
+
+).innerHTML=html;
+
+};
+
+}
+
+
+/* =====================================
+RESTORE SESSION
+===================================== */
+
+function restore(id){
+
+let tx=
+
+db.transaction(
+
+"sessions",
+
+"readonly"
+
+);
+
+let store=
+
+tx.objectStore(
+
+"sessions"
+
+);
+
+let req=
+
+store.get(id);
+
+
+req.onsuccess=e=>{
+
+render(
+
+e.target.result.data,
+
+e.target.result.total
+
+);
+
+};
+
+}
+
+</script>
+
+</body>
+</html>
