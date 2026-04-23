@@ -309,6 +309,20 @@ font-size:22px;
 
 }
 
+.score{
+font-size:28px;
+color:var(--accent);
+}
+
+.score{
+font-size:28px;
+font-weight:700;
+}
+
+.score.good{color:#22c55e;}
+.score.mid{color:#f59e0b;}
+.score.bad{color:#ef4444;}
+
 </style>
 
 </head>
@@ -345,37 +359,33 @@ class="summary"></div>
 <script>
 
 /* =====================================
-INDEXEDDB
+INDEXEDDB INIT (sessions + bin_db SAFE)
 ===================================== */
 
 let db;
 
-let request=indexedDB.open(
-
+let request = indexedDB.open(
 "ANH_ANALYTICS_DB",
-
-2
-
+3
 );
 
-request.onupgradeneeded=e=>{
+request.onupgradeneeded = e => {
 
-db=e.target.result;
+db = e.target.result;
 
-db.createObjectStore(
+if(!db.objectStoreNames.contains("sessions")){
+db.createObjectStore("sessions",{keyPath:"id"});
+}
 
-"sessions",
-
-{keyPath:"id"}
-
-);
+if(!db.objectStoreNames.contains("bin_db")){
+db.createObjectStore("bin_db",{keyPath:"id"});
+}
 
 };
 
+request.onsuccess = e => {
 
-request.onsuccess=e=>{
-
-db=e.target.result;
+db = e.target.result;
 
 boot();
 
@@ -383,30 +393,30 @@ boot();
 
 
 /* =====================================
-BOOT
+BOOT ENGINE
 ===================================== */
 
 function boot(){
 
-loadVault();
-
 loadSessions();
+
+loadVault();
 
 }
 
 
 /* =====================================
-FETCH VAULT
+FETCH VAULT DATA
 ===================================== */
 
 async function loadVault(){
 
-let res=
+let res =
+await fetch(
+"/ValidationSystem/vault/alpha-vault.json"
+);
 
-await fetch("/ValidationSystem/vault/alpha-vault.json");
-
-let vault=
-
+let vault =
 await res.json();
 
 analyze(vault.entries);
@@ -420,24 +430,23 @@ VALIDATION ENGINE
 
 async function analyze(entries){
 
-let sessionID=Date.now();
+let sessionID = Date.now();
 
-let results=[];
+let results = [];
 
-let total=0;
-
+let total = 0;
 
 for(let site of entries){
 
-let score=0;
+let score = 0;
 
 try{
 
-let html=
-
-await fetch(site.url)
-
-.then(r=>r.text());
+let html =
+await fetch(
+site.url,
+{mode:"cors"}
+).then(r=>r.text());
 
 
 if(html.includes(site.urlId)) score+=4;
@@ -452,63 +461,59 @@ if(html.includes("twitter:card")) score++;
 
 if(html.includes("application/ld+json")) score++;
 
-if(html.includes("rel=\"icon\"")) score++;
+if(html.includes('rel="icon"')) score++;
 
 }catch{}
-
 
 results.push({
 
 title:site.title,
-
 url:site.url,
-
 score
 
 });
 
-total+=score;
+total += score;
 
 }
 
-
 render(results,total);
 
-saveSession(
-
-sessionID,
-
-results,
-
-total
-
-);
+saveSession(sessionID,results,total);
 
 }
 
 
 /* =====================================
-RENDER UI
+RENDER UI ENGINE
 ===================================== */
 
 function render(results,total){
 
-let html="";
+let html = "";
 
 results.forEach(r=>{
 
-html+=`
+let cls="bad";
+
+if(r.score>=8) cls="good";
+else if(r.score>=5) cls="mid";
+
+
+html += `
 
 <div class="card">
 
 <b>${r.title}</b>
 
-<div>${r.url}</div>
+<div>
+<a href="${r.url}" target="_blank">
+Visit Project →
+</a>
+</div>
 
-<div class="score">
-
+<div class="score ${cls}">
 ${r.score}/10
-
 </div>
 
 </div>
@@ -518,26 +523,18 @@ ${r.score}/10
 });
 
 
-document.getElementById("grid")
-
-.innerHTML=html;
+document.getElementById("grid").innerHTML = html;
 
 
-document.getElementById("summary")
+document.getElementById("summary").innerHTML =
 
-.innerHTML=
-
-"Consistency Accuracy: "
-
-+
+"Consistency Accuracy: " +
 
 Math.round(
 
 (total/(results.length*10))*100
 
-)
-
-+"%";
+) + "%";
 
 }
 
@@ -546,35 +543,29 @@ Math.round(
 SAVE SESSION
 ===================================== */
 
-function saveSession(
+function saveSession(id,data,total){
 
-id,data,total
-
-){
-
-let tx=
-
+let tx =
 db.transaction(
-
-"sessions",
-
+["sessions","bin_db"],
 "readwrite"
-
 );
 
+tx.objectStore("sessions").put({
 
-tx.objectStore(
-
-"sessions"
-
-).put({
-
-id,data,total
+id,
+data,
+total
 
 });
 
+tx.oncomplete = () => {
+
+enforceSessionLimit();
 
 loadSessions();
+
+};
 
 }
 
@@ -585,53 +576,43 @@ LOAD SESSION LIST
 
 function loadSessions(){
 
-let tx=
-
+let tx =
 db.transaction(
-
 "sessions",
-
 "readonly"
-
 );
 
-let store=
+let store =
+tx.objectStore("sessions");
 
-tx.objectStore(
-
-"sessions"
-
-);
-
-let req=
-
+let req =
 store.getAll();
 
+req.onsuccess = e => {
 
-req.onsuccess=e=>{
+let sessions =
+e.target.result
+.sort((a,b)=>b.id-a.id);
 
 let html="";
 
-e.target.result.forEach(s=>{
+sessions.forEach(s=>{
 
-html+=
+html +=
 
 `<div class="session"
 
 onclick="restore(${s.id})">
 
-Session ${s.id}
+Session ${new Date(s.id).toLocaleString()}
 
 </div>`;
 
 });
 
-
 document.getElementById(
-
 "sessions"
-
-).innerHTML=html;
+).innerHTML = html;
 
 };
 
@@ -639,45 +620,171 @@ document.getElementById(
 
 
 /* =====================================
-RESTORE SESSION
+RESTORE SESSION VIEW
 ===================================== */
 
 function restore(id){
 
-let tx=
-
+let tx =
 db.transaction(
-
 "sessions",
-
 "readonly"
-
 );
 
-let store=
+let store =
+tx.objectStore("sessions");
 
-tx.objectStore(
-
-"sessions"
-
-);
-
-let req=
-
+let req =
 store.get(id);
 
-
-req.onsuccess=e=>{
+req.onsuccess = e => {
 
 render(
 
 e.target.result.data,
-
 e.target.result.total
 
 );
 
 };
+
+}
+
+
+/* =====================================
+SESSION LIMIT + AUTO ARCHIVE ENGINE
+===================================== */
+
+const SESSION_LIMIT = 3;
+
+
+function enforceSessionLimit(){
+
+let tx =
+db.transaction(
+["sessions","bin_db"],
+"readwrite"
+);
+
+let store =
+tx.objectStore("sessions");
+
+let binStore =
+tx.objectStore("bin_db");
+
+let req =
+store.getAll();
+
+
+req.onsuccess = e => {
+
+let sessions =
+e.target.result
+.sort((a,b)=>b.id-a.id);
+
+
+if(sessions.length <= SESSION_LIMIT)
+return;
+
+
+let overflow =
+sessions.slice(SESSION_LIMIT);
+
+
+overflow.forEach(oldSession=>{
+
+binStore.put({
+
+id:oldSession.id,
+
+total:oldSession.total,
+
+entries:oldSession.data.length,
+
+archivedAt:Date.now(),
+
+accuracy:
+
+Math.round(
+
+(oldSession.total /
+
+(oldSession.data.length*10))*100
+
+)
+
+});
+
+
+store.delete(oldSession.id);
+
+
+injectArchiveMeta(oldSession);
+
+});
+
+};
+
+}
+
+
+/* =====================================
+ARCHIVE META GENERATOR
+===================================== */
+
+function injectArchiveMeta(session){
+
+let accuracy =
+
+Math.round(
+
+(session.total /
+
+(session.data.length*10))*100
+
+);
+
+
+let metaTags=[
+
+{name:"anh-archive-session-id",content:session.id},
+
+{name:"anh-archive-sites-count",content:session.data.length},
+
+{name:"anh-archive-total-score",content:session.total},
+
+{name:"anh-archive-accuracy",content:accuracy+"%"},
+
+{name:"anh-archive-timestamp",
+
+content:new Date(session.id).toISOString()},
+
+{name:"anh-archive-generator",
+
+content:"ANH ValidationSystem"},
+
+{name:"anh-archive-type",
+
+content:"session-analytics"},
+
+{name:"anh-archive-status",
+
+content:"archived-background"}
+
+];
+
+
+metaTags.forEach(tag=>{
+
+let meta=document.createElement("meta");
+
+meta.name=tag.name;
+
+meta.content=tag.content;
+
+document.head.appendChild(meta);
+
+});
 
 }
 
