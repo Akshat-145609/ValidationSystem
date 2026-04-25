@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ANH Validation Protocol Documentation | Alpha-1.1 Architecture Guide</title>
+<title>ANH Validation Protocol Documentation | Alpha-1.1 Architecture Guide</title> 
 <meta name="description" content="Official documentation of the ANH Validation Protocol Alpha-1.1 covering routing agents, vault synchronization, script identity validation and trust scoring architecture.">
-
 <script class="Scripto">
 
 window.ANH_ID="ANH-NF5P999"
@@ -18,7 +17,7 @@ icon:"https://akshat-145609.github.io//ValidationSystem/ANH.png"
 }
 
 </script>
-
+<script src="/ValidationSystem/scripts/vault.js"></script>
 <script src="/ValidationSystem/scripts/anh-validator.js"></script>
 
 <meta name="keywords"
@@ -54,7 +53,7 @@ content="article">
 content="Akshat Network Hub">
 
 <meta property="og:url"
-content="https://akshatnetworkhub.github.io/ValidationSystem/docs/">
+content="https://akshat-145609.github.io/ValidationSystem/Documentation.htm">
 
 <!-- Twitter -->
 
@@ -262,33 +261,36 @@ padding:18px;
 
 <hr>
 
-<a href="/ValidationSystem/ANH_Protocol.png"
-class="d-block text-info mb-2">
+<a href="/ValidationSystem/ANH_Protocol.png" class="d-block text-info mb-2" title="Akshat Network Hub Validation Protocol">
 Slide 1 – Entry Routing
 </a>
 
-<a href="/ValidationSystem/Slide-1_ANH_Validation.png"
-class="d-block text-info mb-2">
+<a href="/ValidationSystem/Slide-1_ANH_Validation.png"class="d-block text-info mb-2" title="Tier based Identity Routing & Entry Validation Layer">
 Slide 2 – Vault Sync
 </a>
 
-<a href="/ValidationSystem/Slide-2_ANH_Validation.png"
-class="d-block text-info mb-2">
+<a href="/ValidationSystem/Slide-2_ANH_Validation.png" class="d-block text-info mb-2" title="Vault Interaction Layer & Metadata Synchronization Pipeline" title="Tier - 2 Script Validation & Identity Match Engine">
 Slide 3 – Script Match
 </a>
 
-<a href="/ValidationSystem/Slide-3_ANH_Validation.png"
-class="d-block text-info mb-2">
+<a href="/ValidationSystem/Slide-3_ANH_Validation.png" class="d-block text-info mb-2" title="Tier - 2 Script Validity & Identity Match Engine">
 Slide 4 – Trust Scoring
 </a>
 
-<a href="/ValidationSystem/Slide-4_ANH_Validation.png"
-class="d-block text-info mb-2">
+<a href="/ValidationSystem/Slide-4_ANH_Validation.png" class="d-block text-info mb-2" title="Tier - 3 Trust Evaluation & Scoring Engine">
 Slide 5 – Full Protocol Flow
 </a>
 
 <a href="/ValidationSystem/index.htm" title="Homepage" class="d-block text-info mb-2">
 Generate Scripto & Vault Json </a>
+
+<a href="/ValidationSystem/Dashboard.htm" title="Dashboard" class="d-block text-info mb-2">
+ANH Verified Sites Dashboard
+</a>
+
+<a href="/ValidationSystem/analytics/index.htm" title="ANH Site Validation Analytics" class="d-block text-info mb-2">
+ANH Consistency Analytics Dashboard
+</a>
 </div>
 
 
@@ -327,8 +329,7 @@ class="slide-img">
 
 <p class="mt-3">
 
-Routing Agent extracts metadata and communicates with Alpha Vault
-before initiating script validation pipeline.
+Routing Agent extracts metadata and communicates with Alpha Vault before initiating script validation pipeline. It initializes page verification by extracting metadata from the DOM. It identifies URL, title and description and sends a request to the vault layer. This stage ensures pre-validation filtering before heavy computation begins. It also determines whether the page belongs to ANH ecosystem or external source. Routing acts as the entry intelligence layer and controls pipeline direction efficiently.
 
 </p>
 
@@ -354,8 +355,7 @@ class="slide-img">
 
 <p class="mt-3">
 
-Alpha Vault acts as source-of-truth storing identity metadata and
-synchronizing verification across validation nodes.
+Alpha Vault acts as source-of-truth storing identity metadata and synchronizing verification across validation nodes. It stores identity records for all verified pages. It acts as a central trust registry mapping URL → ID → metadata.During validation, routing engine queries vault to match identity. If matched, verification continues, otherwise flagged. This layer ensures data consistency and ownership validation. Vault acts as the source of truth in the protocol.
 
 </p>
 
@@ -381,8 +381,7 @@ class="slide-img">
 
 <p class="mt-3">
 
-Inline Scripto identity verification confirms ownership authenticity
-through vault signature matching.
+Inline Scripto identity verification confirms ownership authenticity through vault signature matching. It validates page ownership via inline  script identity. It checks window.ANH_ID and metadata block against vault. Mismatch results in warning or downgrade. This ensures tamper  resistance and prevents spoofing. Script validation is crucial for identity authenticity across pages. It forms the backbone of trust verification.
 
 </p>
 
@@ -408,8 +407,7 @@ class="slide-img">
 
 <p class="mt-3">
 
-Tier-3 scoring engine evaluates metadata consistency, SSL validity,
-domain authenticity and structured data reliability.
+Tier-3 scoring engine evaluates metadata consistency, SSL validity, domain authenticity and structured data reliability. Trust Engine calculates reliability using scoring rules. It evaluates metadata, structured data, favicon, OG tags. Each valid signal increases score. This enables quantitative trust evaluation. Score determines classification like trusted or caution. This layer transforms validation into measurable analytics.
 
 </p>
 
@@ -435,8 +433,7 @@ class="slide-img">
 
 <p class="mt-3">
 
-Complete pipeline integrates routing intelligence, vault sync,
-identity verification and trust scoring analytics.
+Complete pipeline integrates routing intelligence, vault sync, identity verification and trust scoring analytics. Complete protocol integrates routing → vault → script → scoring. Each layer adds verification depth. System ensures end-to-end identity assurance. If all checks pass, page is trusted. Otherwise, flagged with warnings. This pipeline delivers secure, scalable validation for ANH ecosystem.
 
 </p>
 

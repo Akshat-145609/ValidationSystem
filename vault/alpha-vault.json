@@ -134,6 +134,19 @@
 "createdBy":"index.htm generator",
 "checksum":"AUTO_OPTIONAL",
 "lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-X04MXO1",
+"url":"https://akshat-145609.github.io/ValidationSystem/Dashboard.htm",
+"title":"ANH Verified Sites Dashboard",
+"description":"Explore verified projects of Akshat Network Hub validated via ANH ValidationSystem Alpha Vault trust architecture.",
+"icon":"https://akshat-145609.github.io/ValidationSystem/ANH.png",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
 }
 
 ],

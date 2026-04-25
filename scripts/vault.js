@@ -91,7 +91,7 @@ LOAD VAULT DATABASE
 =========================================================
 */
 
-async loadVault(vaultPath = "/vault/alpha-vault.json") {
+async loadVault(vaultPath = "/ValidationSystem/vault/alpha-vault.json") {
 
 try {
 
