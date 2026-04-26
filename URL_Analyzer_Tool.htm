@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced URL Analyzer Tool - Comprehensive SEO Analysis for GitHub Pages URLs">
+    <meta name="keywords" content="SEO, URL Analyzer, GitHub Pages, Schema Markup, Breadcrumbs">
+    <meta name="author" content="Akshat-881236">
+    <meta property="og:title" content="Advanced URL Analyzer Tool">
+    <meta property="og:description" content="Analyze GitHub Pages URLs for SEO compliance and schema validation">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Advanced URL Analyzer Tool">
+    <meta name="twitter:description" content="Advanced SEO Analysis for GitHub Pages">
+    <title>Advanced URL Analyzer Tool</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="cannonical" href="https://akshat-881236.github.io/ValidationSystem/URL_Analyzer_Tool.htm">
+    <link rel="icon" href="https://akshat-145609.github.io/ValidationSystem/ANH.png"
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .input-section {
+            padding: 30px 20px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .tabs-container {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            background: white;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: #f8f9fa;
+        }
+
+        .tab-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px 20px;
+            min-height: 500px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .code-editor-wrapper {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        .code-editor-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .code-editor-controls .btn {
+            flex: 0 1 auto;
+            padding: 10px 15px;
+            font-size: 0.9em;
+        }
+
+        .code-editor {
+            position: relative;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #1e1e1e;
+        }
+
+        .code-editor textarea {
+            width: 100%;
+            height: 500px;
+            padding: 15px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .code-editor textarea:focus {
+            outline: none;
+        }
+
+        .seo-report {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .score-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: bold;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .score-circle.low {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .score-circle.medium {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .score-circle.high {
+            background: linear-gradient(135deg, #30b0fe 0%, #4834d4 100%);
+        }
+
+        .factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .factor {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .factor-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .factor-marks {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .factor.pass {
+            border-left-color: #28a745;
+            background: #f0f9ff;
+        }
+
+        .factor.fail {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .empty-urls {
+            overflow-x: auto;
+        }
+
+        .empty-urls table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .empty-urls thead {
+            background: #f8f9fa;
+        }
+
+        .empty-urls th,
+        .empty-urls td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .empty-urls th {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .empty-urls tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .status-badge.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .crawl-details {
+            overflow-x: auto;
+        }
+
+        .crawl-details table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .crawl-details thead {
+            background: #f8f9fa;
+        }
+
+        .crawl-details th,
+        .crawl-details td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .crawl-details th {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .crawl-details tr:hover {
+            background: #f8f9fa;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .syntax-highlight {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .highlight-tag {
+            color: #569cd6;
+        }
+
+        .highlight-attr {
+            color: #9cdcfe;
+        }
+
+        .highlight-value {
+            color: #ce9178;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            input[type="text"] {
+                min-width: 100%;
+            }
+
+            .tab-btn {
+                min-width: 100px;
+                font-size: 0.85em;
+            }
+
+            .factors {
+                grid-template-columns: 1fr;
+            }
+
+            .iframe-container {
+                height: 400px;
+            }
+
+            .code-editor textarea {
+                height: 300px;
+                font-size: 11px;
+            }
+
+            .tab-content {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                min-width: 80px;
+                padding: 10px;
+            }
+
+            .btn {
+                padding: 10px 15px;
+                font-size: 0.85em;
+            }
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .message.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .scripto {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <script class="scripto" type="application/json">
+    {
+        "ANH_ID": "ANALYZER_TOOL_2026",
+        "VERSION": "1.0.0",
+        "TIMESTAMP": "2026-04-26"
+    }
+    </script>
+
+    <div class="container">
+        <div class="header">
+            <h1>
+                <i class="bi bi-search"></i>
+                Advanced URL Analyzer Tool
+            </h1>
+            <p>Comprehensive SEO Analysis for GitHub Pages URLs</p>
+        </div>
+
+        <div class="input-section">
+            <div class="input-group">
+                <input type="text" id="urlInput" placeholder="Enter GitHub Pages URL (e.g., https://username.github.io/repo)" value="">
+                <button class="btn btn-primary" onclick="analyzeUrl()">
+                    <i class="bi bi-play-circle"></i>
+                    Analyze
+                </button>
+            </div>
+            <div id="message"></div>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab('iframe')">
+                <i class="bi bi-window"></i>
+                Iframe View
+            </button>
+            <button class="tab-btn" onclick="switchTab('source')">
+                <i class="bi bi-code-square"></i>
+                Source Code
+            </button>
+            <button class="tab-btn" onclick="switchTab('report')">
+                <i class="bi bi-file-earmark-text"></i>
+                SEO Report
+            </button>
+            <button class="tab-btn" onclick="switchTab('empty')">
+                <i class="bi bi-exclamation-circle"></i>
+                Empty URLs
+            </button>
+            <button class="tab-btn" onclick="switchTab('crawl')">
+                <i class="bi bi-diagram-3"></i>
+                Crawl Details
+            </button>
+        </div>
+
+        <div class="tab-content active" id="iframe">
+            <div class="loading" id="iframeLoading">
+                <div class="spinner"></div>
+                <p>Loading website...</p>
+            </div>
+            <div class="iframe-container hidden" id="iframeContainer">
+                <iframe id="previewFrame" title="Load Enter URL Frame"></iframe>
+            </div>
+        </div>
+
+        <div class="tab-content" id="source">
+            <div class="loading hidden" id="sourceLoading">
+                <div class="spinner"></div>
+                <p>Fetching source code...</p>
+            </div>
+            <div class="code-editor-wrapper hidden" id="sourceWrapper">
+                <div class="code-editor-controls">
+                    <button class="btn btn-primary" onclick="copyCode()">
+                        <i class="bi bi-clipboard"></i>
+                        Copy
+                    </button>
+                    <button class="btn btn-primary" onclick="refreshCode()">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Refresh
+                    </button>
+                    <button class="btn btn-primary" onclick="editCode()">
+                        <i class="bi bi-pencil"></i>
+                        Edit
+                    </button>
+                    <button class="btn btn-primary" onclick="runCode()">
+                        <i class="bi bi-play-circle"></i>
+                        Run
+                    </button>
+                    <button class="btn btn-primary" onclick="openInNewTab()">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                        New Tab
+                    </button>
+                </div>
+                <div class="code-editor">
+                    <textarea id="sourceCode" readonly title="Source Code of URL"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="report">
+            <div class="loading hidden" id="reportLoading">
+                <div class="spinner"></div>
+                <p>Analyzing SEO...</p>
+            </div>
+            <div class="seo-report hidden" id="seoReport">
+                <div class="score-card">
+                    <h2>Overall SEO Score</h2>
+                    <div class="score-circle" id="scoreCircle">0</div>
+                    <p id="scoreDescription">Awaiting analysis...</p>
+                </div>
+                <div id="factorsContainer"></div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="empty">
+            <div class="loading hidden" id="emptyLoading">
+                <div class="spinner"></div>
+                <p>Checking URLs...</p>
+            </div>
+            <div class="empty-urls hidden" id="emptyUrlsContainer">
+                <h3>Empty/Broken URLs Report</h3>
+                <table id="emptyUrlsTable">
+                    <thead>
+                        <tr>
+                            <th>URL</th>
+                            <th>Status Code</th>
+                            <th>Status</th>
+                            <th>Error</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab-content" id="crawl">
+            <div class="loading hidden" id="crawlLoading">
+                <div class="spinner"></div>
+                <p>Crawling links...</p>
+            </div>
+            <div class="crawl-details hidden" id="crawlContainer">
+                <h3>Crawl Link Details</h3>
+                <table id="crawlTable">
+                    <thead>
+                        <tr>
+                            <th>Link Text</th>
+                            <th>URL</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentUrl = '';
+        let sourceCode = '';
+        let seoData = {};
+        let brokenUrls = [];
+        let crawlData = [];
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.closest('.tab-btn').classList.add('active');
+        }
+
+        // Main analyze function
+        async function analyzeUrl() {
+            const urlInput = document.getElementById('urlInput');
+            const url = urlInput.value.trim();
+
+            if (!url) {
+                showMessage('Please enter a valid GitHub Pages URL', 'error');
+                return;
+            }
+
+            if (!isValidUrl(url)) {
+                showMessage('Please enter a valid URL', 'error');
+                return;
+            }
+
+            currentUrl = url;
+
+            try {
+                // Clear previous data
+                clearAllData();
+
+                // Show loading states
+                showLoading('iframe');
+                showLoading('source');
+                showLoading('report');
+
+                // Fetch and analyze
+                await loadIframe(url);
+                await fetchSourceCode(url);
+                await analyzeSource();
+                await crawlLinks();
+                await checkEmptyUrls();
+
+                showMessage('Analysis completed successfully!', 'success');
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Error analyzing URL: ' + error.message, 'error');
+            }
+        }
+
+        // Validate URL
+        function isValidUrl(string) {
+            try {
+                const url = new URL(string);
+                return url.protocol === 'http:' || url.protocol === 'https:';
+            } catch (_) {
+                return false;
+            }
+        }
+
+        // Load iframe preview
+        async function loadIframe(url) {
+            try {
+                const frame = document.getElementById('previewFrame');
+                frame.src = url;
+                
+                hideLoading('iframe');
+                document.getElementById('iframeContainer').classList.remove('hidden');
+            } catch (error) {
+                hideLoading('iframe');
+                showMessage('Failed to load iframe: ' + error.message, 'error');
+            }
+        }
+
+        // Fetch source code using CORS proxy
+        async function fetchSourceCode(url) {
+            try {
+                const corsUrl = `https://cors-anywhere.herokuapp.com/${url}`;
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                sourceCode = await response.text();
+                document.getElementById('sourceCode').value = sourceCode;
+                
+                hideLoading('source');
+                document.getElementById('sourceWrapper').classList.remove('hidden');
+            } catch (error) {
+                // Try alternative method
+                try {
+                    const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
+                    sourceCode = await response.text();
+                    document.getElementById('sourceCode').value = sourceCode;
+                    
+                    hideLoading('source');
+                    document.getElementById('sourceWrapper').classList.remove('hidden');
+                } catch (e) {
+                    hideLoading('source');
+                    showMessage('Note: Could not fetch source code. CORS restrictions apply.', 'info');
+                }
+            }
+        }
+
+        // Analyze source code for SEO
+        async function analyzeSource() {
+            const parser = new DOMParser();
+            let doc;
+
+            try {
+                doc = parser.parseFromString(sourceCode, 'text/html');
+            } catch {
+                doc = null;
+            }
+
+            let score = 100;
+            const factors = [];
+
+            // Check ANH_ID
+            const anhId = extractANHID();
+
+            // Title analysis
+            const titleElement = doc?.querySelector('title');
+            const titleText = titleElement?.textContent || '';
+            const titleLength = titleText.length;
+            const titleFactor = analyzeTitleSEO(titleText, titleLength);
+            factors.push(titleFactor);
+            score += titleFactor.marks;
+
+            // Meta description
+            const description = doc?.querySelector('meta[name="description"]')?.content || '';
+            const descFactor = analyzeDescription(description);
+            factors.push(descFactor);
+            score += descFactor.marks;
+
+            // OG Tags
+            const ogTitle = doc?.querySelector('meta[property="og:title"]')?.content || '';
+            const ogDesc = doc?.querySelector('meta[property="og:description"]')?.content || '';
+            const ogFactor = analyzeOpenGraph(ogTitle, ogDesc);
+            factors.push(ogFactor);
+            score += ogFactor.marks;
+
+            // Twitter Card
+            const twitterCard = doc?.querySelector('meta[name="twitter:card"]')?.content || '';
+            const twitterFactor = analyzeTwitterCard(twitterCard);
+            factors.push(twitterFactor);
+            score += twitterFactor.marks;
+
+            // Favicon
+            const favicon = doc?.querySelector('link[rel="icon"]') || doc?.querySelector('link[rel="shortcut icon"]');
+            const faviconFactor = {
+                name: 'Favicon/Icon',
+                status: favicon ? 'PASS' : 'FAIL',
+                marks: favicon ? 5 : -5,
+                details: favicon ? 'Favicon found' : 'No favicon detected'
+            };
+            factors.push(faviconFactor);
+            score += faviconFactor.marks;
+
+            // Canonical URL
+            const canonical = doc?.querySelector('link[rel="canonical"]')?.href || '';
+            const canonicalFactor = {
+                name: 'Canonical URL',
+                status: canonical ? 'PASS' : 'FAIL',
+                marks: canonical ? 5 : -3,
+                details: canonical ? `Canonical: ${canonical}` : 'No canonical URL'
+            };
+            factors.push(canonicalFactor);
+            score += canonicalFactor.marks;
+
+            // Keywords
+            const keywords = doc?.querySelector('meta[name="keywords"]')?.content || '';
+            const keywordFactor = {
+                name: 'Keywords Meta Tag',
+                status: keywords ? 'PASS' : 'FAIL',
+                marks: keywords ? 5 : -2,
+                details: keywords ? `Keywords defined` : 'No keywords meta tag'
+            };
+            factors.push(keywordFactor);
+            score += keywordFactor.marks;
+
+            // Robots.txt
+            const robotsFactor = await checkRobotsTxt();
+            factors.push(robotsFactor);
+            score += robotsFactor.marks;
+
+            // Scripto class
+            const scriptFactor = checkScripto();
+            factors.push(scriptFactor);
+            score += scriptFactor.marks;
+
+            // Breadcrumbs
+            const breadcrumbFactor = checkBreadcrumbs(doc);
+            factors.push(breadcrumbFactor);
+            score += breadcrumbFactor.marks;
+
+            // JSON-LD Schema
+            const jsonldFactor = checkJSONLD(doc);
+            factors.push(jsonldFactor);
+            score += jsonldFactor.marks;
+
+            // Person/Organization Schema
+            const schemaPerson = doc?.querySelector('script[type="application/ld+json"]');
+            const schemaFactor = checkSchemaMarkup(schemaPerson);
+            factors.push(schemaFactor);
+            score += schemaFactor.marks;
+
+            // Heading hierarchy
+            const headingFactor = analyzeHeadings(doc);
+            factors.push(headingFactor);
+            score += headingFactor.marks;
+
+            // Mobile first (media queries)
+            const mobileFactor = checkMediaQueries();
+            factors.push(mobileFactor);
+            score += mobileFactor.marks;
+
+            // Links and Images
+            const linksImgFactor = checkLinksAndImages(doc);
+            factors.push(linksImgFactor);
+            score += linksImgFactor.marks;
+
+            // Ensure score is between 0 and 100
+            score = Math.max(0, Math.min(100, score));
+
+            seoData = {
+                score,
+                factors,
+                titleText,
+                description,
+                ogTitle,
+                ogDesc,
+                twitterCard,
+                canonical,
+                keywords,
+                anhId
+            };
+
+            displaySEOReport(score, factors);
+            hideLoading('report');
+            document.getElementById('seoReport').classList.remove('hidden');
+        }
+
+        // Title SEO Analysis
+        function analyzeTitleSEO(title, length) {
+            let marks = 0;
+            let status = 'FAIL';
+            let details = '';
+
+            if (length >= 30 && length <= 60) {
+                marks = 10;
+                status = 'PASS';
+                details = 'Title length is optimal (30-60 chars)';
+            } else if (length > 0) {
+                marks = 5;
+                status = 'PARTIAL';
+                details = `Title length: ${length} chars (recommended 30-60)`;
+            } else {
+                marks = -10;
+                details = 'No title tag found';
+            }
+
+            return {
+                name: 'Page Title',
+                status,
+                marks,
+                details
+            };
+        }
+
+        // Description Analysis
+        function analyzeDescription(desc) {
+            let marks = 0;
+            let status = 'FAIL';
+            let details = '';
+
+            if (desc.length >= 120 && desc.length <= 160) {
+                marks = 10;
+                status = 'PASS';
+                details = 'Description length is optimal (120-160 chars)';
+            } else if (desc.length > 0) {
+                marks = 5;
+                status = 'PARTIAL';
+                details = `Description length: ${desc.length} chars (recommended 120-160)`;
+            } else {
+                marks = -10;
+                details = 'No meta description found';
+            }
+
+            return {
+                name: 'Meta Description',
+                status,
+                marks,
+                details
+            };
+        }
+
+        // Open Graph Analysis
+        function analyzeOpenGraph(ogTitle, ogDesc) {
+            const hasOG = ogTitle && ogDesc;
+            return {
+                name: 'Open Graph Tags',
+                status: hasOG ? 'PASS' : 'FAIL',
+                marks: hasOG ? 8 : -5,
+                details: hasOG ? 'OG tags properly configured' : 'Missing OG meta tags'
+            };
+        }
+
+        // Twitter Card Analysis
+        function analyzeTwitterCard(twitterCard) {
+            return {
+                name: 'Twitter Card',
+                status: twitterCard ? 'PASS' : 'FAIL',
+                marks: twitterCard ? 5 : -3,
+                details: twitterCard ? `Card type: ${twitterCard}` : 'No Twitter card meta tag'
+            };
+        }
+
+        // Check Robots.txt
+        async function checkRobotsTxt() {
+            try {
+                const baseUrl = new URL(currentUrl).origin;
+                const robotsUrl = `${baseUrl}/robots.txt`;
+                const response = await fetch(robotsUrl);
+                
+                return {
+                    name: 'Robots.txt',
+                    status: response.ok ? 'PASS' : 'FAIL',
+                    marks: response.ok ? 5 : -3,
+                    details: response.ok ? 'robots.txt found' : 'No robots.txt file'
+                };
+            } catch {
+                return {
+                    name: 'Robots.txt',
+                    status: 'FAIL',
+                    marks: -3,
+                    details: 'Could not verify robots.txt'
+                };
+            }
+        }
+
+        // Check Scripto class
+        function checkScripto() {
+            const hasScripto = !!document.querySelector('script.scripto');
+            return {
+                name: 'Scripto Class Script',
+                status: hasScripto ? 'PASS' : 'FAIL',
+                marks: hasScripto ? 10 : -10,
+                details: hasScripto ? 'Scripto class script found' : 'Required scripto class script not found'
+            };
+        }
+
+        // Extract ANH_ID
+        function extractANHID() {
+            const scriptElement = document.querySelector('script.scripto');
+            if (scriptElement) {
+                try {
+                    const data = JSON.parse(scriptElement.textContent);
+                    return data.ANH_ID || null;
+                } catch {
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        // Check Breadcrumbs
+        function checkBreadcrumbs(doc) {
+            const breadcrumbs = doc?.querySelector('[itemtype*="BreadcrumbList"]') || 
+                               doc?.querySelectorAll('nav ol li').length > 0;
+            
+            return {
+                name: 'Breadcrumbs',
+                status: breadcrumbs ? 'PASS' : 'FAIL',
+                marks: breadcrumbs ? 5 : -3,
+                details: breadcrumbs ? 'Breadcrumb markup found' : 'No breadcrumb markup'
+            };
+        }
+
+        // Check JSON-LD
+        function checkJSONLD(doc) {
+            const jsonld = doc?.querySelector('script[type="application/ld+json"]');
+            return {
+                name: 'JSON-LD Schema',
+                status: jsonld ? 'PASS' : 'FAIL',
+                marks: jsonld ? 8 : -5,
+                details: jsonld ? 'JSON-LD schema found' : 'No JSON-LD schema'
+            };
+        }
+
+        // Check Schema Markup
+        function checkSchemaMarkup(schemaPerson) {
+            return {
+                name: 'Person/Org Schema',
+                status: schemaPerson ? 'PASS' : 'FAIL',
+                marks: schemaPerson ? 5 : -3,
+                details: schemaPerson ? 'Schema markup found' : 'No Person/Organization schema'
+            };
+        }
+
+        // Analyze Headings
+        function analyzeHeadings(doc) {
+            const h1 = doc?.querySelectorAll('h1').length || 0;
+            const h2 = doc?.querySelectorAll('h2').length || 0;
+            const h3 = doc?.querySelectorAll('h3').length || 0;
+
+            let marks = 0;
+            let status = 'FAIL';
+
+            if (h1 === 1) {
+                marks = 10;
+                status = 'PASS';
+            } else if (h1 > 1) {
+                marks = 5;
+                status = 'PARTIAL';
+            } else {
+                marks = -10;
+            }
+
+            return {
+                name: 'Heading Hierarchy',
+                status,
+                marks,
+                details: `H1: ${h1}, H2: ${h2}, H3: ${h3}`
+            };
+        }
+
+        // Check Media Queries
+        function checkMediaQueries() {
+            const mediaQueryMatch = sourceCode.match(/@media/gi);
+            const hasMediaQueries = mediaQueryMatch && mediaQueryMatch.length > 0;
+
+            return {
+                name: 'Mobile First (Media Queries)',
+                status: hasMediaQueries ? 'PASS' : 'FAIL',
+                marks: hasMediaQueries ? 10 : -5,
+                details: hasMediaQueries ? `Found ${mediaQueryMatch.length} media queries` : 'No media queries found'
+            };
+        }
+
+        // Check Links and Images
+        function checkLinksAndImages(doc) {
+            const links = doc?.querySelectorAll('a').length || 0;
+            const images = doc?.querySelectorAll('img').length || 0;
+            const imagesWithAlt = doc?.querySelectorAll('img[alt]').length || 0;
+            const linksWithTitle = doc?.querySelectorAll('a[title]').length || 0;
+
+            let marks = 0;
+            if (imagesWithAlt === images && linksWithTitle > links * 0.5) {
+                marks = 8;
+            } else if (imagesWithAlt > images * 0.7) {
+                marks = 5;
+            } else {
+                marks = -5;
+            }
+
+            return {
+                name: 'Links & Images',
+                status: marks >= 0 ? 'PASS' : 'FAIL',
+                marks,
+                details: `Links: ${links}, Images: ${images}, Alt text: ${imagesWithAlt}/${images}`
+            };
+        }
+
+        // Display SEO Report
+        function displaySEOReport(score, factors) {
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreDesc = document.getElementById('scoreDescription');
+            const factorsContainer = document.getElementById('factorsContainer');
+
+            scoreCircle.textContent = score;
+            scoreCircle.className = 'score-circle';
+
+            if (score >= 80) {
+                scoreCircle.classList.add('high');
+                scoreDesc.textContent = 'Excellent SEO Score!';
+            } else if (score >= 60) {
+                scoreCircle.classList.add('medium');
+                scoreDesc.textContent = 'Good SEO Score';
+            } else {
+                scoreCircle.classList.add('low');
+                scoreDesc.textContent = 'SEO Improvement Needed';
+            }
+
+            factorsContainer.innerHTML = '';
+            const factorsDiv = document.createElement('div');
+            factorsDiv.className = 'factors';
+
+            factors.forEach(factor => {
+                const factorEl = document.createElement('div');
+                factorEl.className = `factor ${factor.status.toLowerCase() === 'pass' ? 'pass' : 'fail'}`;
+                factorEl.innerHTML = `
+                    <div class="factor-title">
+                        <i class="bi ${factor.status === 'PASS' ? 'bi-check-circle-fill' : 'bi-x-circle-fill'}"></i>
+                        ${factor.name}
+                    </div>
+                    <div class="factor-marks">
+                        <strong>${factor.marks > 0 ? '+' : ''}${factor.marks} marks</strong>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 0.9em;">
+                        ${factor.details}
+                    </div>
+                `;
+                factorsDiv.appendChild(factorEl);
+            });
+
+            factorsContainer.appendChild(factorsDiv);
+        }
+
+        // Crawl all links
+        async function crawlLinks() {
+            const parser = new DOMParser();
+            let doc;
+
+            try {
+                doc = parser.parseFromString(sourceCode, 'text/html');
+            } catch {
+                return;
+            }
+
+            const links = doc?.querySelectorAll('a[href]') || [];
+            crawlData = [];
+
+            for (const link of links) {
+                const href = link.getAttribute('href');
+                const text = link.textContent.trim().substring(0, 50);
+
+                if (href && (href.startsWith('http') || href.startsWith('/'))) {
+                    const absoluteUrl = href.startsWith('http') ? href : new URL(currentUrl).origin + href;
+
+                    try {
+                        const response = await fetch(absoluteUrl, { method: 'HEAD' });
+                        crawlData.push({
+                            text: text || 'No text',
+                            url: absoluteUrl,
+                            type: 'internal',
+                            status: `${response.status} - ${response.statusText}`
+                        });
+                    } catch {
+                        crawlData.push({
+                            text: text || 'No text',
+                            url: absoluteUrl,
+                            type: 'internal',
+                            status: 'Error - Could not reach'
+                        });
+                    }
+                }
+            }
+
+            displayCrawlData();
+        }
+
+        // Display crawl data
+        function displayCrawlData() {
+            const table = document.getElementById('crawlTable').getElementsByTagName('tbody')[0];
+            table.innerHTML = '';
+
+            crawlData.forEach(item => {
+                const row = table.insertRow();
+                row.innerHTML = `
+                    <td>${item.text}</td>
+                    <td><a href="${item.url}" target="_blank" style="color: #667eea;">${item.url.substring(0, 50)}...</a></td>
+                    <td>${item.type}</td>
+                    <td><span class="status-badge ${item.status.includes('Error') ? 'error' : 'success'}">${item.status}</span></td>
+                `;
+            });
+
+            hideLoading('crawl');
+            document.getElementById('crawlContainer').classList.remove('hidden');
+        }
+
+        // Check empty/broken URLs
+        async function checkEmptyUrls() {
+            const parser = new DOMParser();
+            let doc;
+
+            try {
+                doc = parser.parseFromString(sourceCode, 'text/html');
+            } catch {
+                return;
+            }
+
+            const links = doc?.querySelectorAll('a[href]') || [];
+            brokenUrls = [];
+
+            for (const link of links) {
+                const href = link.getAttribute('href');
+
+                if (href && (href.startsWith('http') || href.startsWith('/'))) {
+                    const absoluteUrl = href.startsWith('http') ? href : new URL(currentUrl).origin + href;
+
+                    try {
+                        const response = await fetch(absoluteUrl, { method: 'HEAD' });
+                        if (!response.ok || response.status === 404) {
+                            brokenUrls.push({
+                                url: absoluteUrl,
+                                statusCode: response.status,
+                                status: '404 Not Found',
+                                error: 'Empty page or broken link'
+                            });
+                        }
+                    } catch (e) {
+                        brokenUrls.push({
+                            url: absoluteUrl,
+                            statusCode: 0,
+                            status: 'Error',
+                            error: e.message
+                        });
+                    }
+                }
+            }
+
+            displayEmptyUrls();
+        }
+
+        // Display empty URLs
+        function displayEmptyUrls() {
+            const table = document.getElementById('emptyUrlsTable').getElementsByTagName('tbody')[0];
+            table.innerHTML = '';
+
+            if (brokenUrls.length === 0) {
+                const row = table.insertRow();
+                row.innerHTML = '<td colspan="4" style="text-align: center; color: #28a745;">✓ No broken links found!</td>';
+            } else {
+                brokenUrls.forEach(item => {
+                    const row = table.insertRow();
+                    row.innerHTML = `
+                        <td><a href="${item.url}" target="_blank" style="color: #667eea;">${item.url.substring(0, 50)}...</a></td>
+                        <td>${item.statusCode}</td>
+                        <td><span class="status-badge error">${item.status}</span></td>
+                        <td>${item.error}</td>
+                    `;
+                });
+            }
+
+            hideLoading('empty');
+            document.getElementById('emptyUrlsContainer').classList.remove('hidden');
+        }
+
+        // Code editor functions
+        function copyCode() {
+            const code = document.getElementById('sourceCode');
+            code.select();
+            document.execCommand('copy');
+            showMessage('Code copied to clipboard!', 'success');
+        }
+
+        function refreshCode() {
+            fetchSourceCode(currentUrl);
+        }
+
+        function editCode() {
+            const code = document.getElementById('sourceCode');
+            code.readOnly = !code.readOnly;
+            showMessage(code.readOnly ? 'Code is now read-only' : 'Code is now editable', 'info');
+        }
+
+        function runCode() {
+            const code = document.getElementById('sourceCode');
+            const frame = document.getElementById('previewFrame');
+            frame.srcdoc = code.value;
+            showMessage('Code executed in preview!', 'success');
+        }
+
+        function openInNewTab() {
+            window.open(currentUrl, '_blank');
+        }
+
+        // Utility functions
+        function showMessage(message, type) {
+            const msgEl = document.getElementById('message');
+            msgEl.innerHTML = `<div class="message ${type}">${message}</div>`;
+            setTimeout(() => {
+                msgEl.innerHTML = '';
+            }, 5000);
+        }
+
+        function showLoading(tabId) {
+            document.getElementById(`${tabId}Loading`).classList.add('active');
+        }
+
+        function hideLoading(tabId) {
+            document.getElementById(`${tabId}Loading`).classList.remove('active');
+        }
+
+        function clearAllData() {
+            sourceCode = '';
+            seoData = {};
+            brokenUrls = [];
+            crawlData = [];
+            
+            document.getElementById('sourceCode').value = '';
+            document.getElementById('sourceWrapper').classList.add('hidden');
+            document.getElementById('seoReport').classList.add('hidden');
+            document.getElementById('emptyUrlsContainer').classList.add('hidden');
+            document.getElementById('crawlContainer').classList.add('hidden');
+            document.getElementById('iframeContainer').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
