@@ -147,6 +147,19 @@
 "createdBy":"index.htm generator",
 "checksum":"AUTO_OPTIONAL",
 "lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-C8PO43B",
+"url":"https://akshat-145609.github.io/ValidationSystem/URL_Analyzer_Tool.htm",
+"title":"Advanced URL Analyzer Tool - ANH Validation System",
+"description":"Advanced URL Analyzer Tool - Comprehensive SEO Analysis for GitHub Pages URLs. Check title tags, meta descriptions, OG tags, Twitter cards, schema markup, and more to optimize your GitHub Pages site for search engines.",
+"icon":"https://akshat-145609.github.io/ValidationSystem/urlLogo.png",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
 }
 
 ],
