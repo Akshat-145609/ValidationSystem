@@ -160,6 +160,45 @@
 "createdBy":"index.htm generator",
 "checksum":"AUTO_OPTIONAL",
 "lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-9HFUEVU",
+"url":"https://akshat-881236.github.io/AkshatNetworkHub/",
+"title":"Akshat Network Hub",
+"description":"Akshat Network Hub is the central portfolio of Akshat, a BCA student at MDU Rohtak – showcasing projects, skills, academic achievements, and secure navigation to all his online work.",
+"icon":"https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-EN2LLOV",
+"url":"https://akshat-881236.github.io/AkshatNetworkHub/MediumStory/index.htm",
+"title":"Medium Story Fest | Akshat Network Hub",
+"description":"Explore curated stories, blogs and ideas in Medium Story Fest by Akshat Network Hub",
+"icon":"https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
+},
+
+{
+"urlId":"ANH-ULJ33O3",
+"url":"https://akshat-881236.github.io/AkshatNetworkHub/Akshat-881236-main/index.htm",
+"title":"Akshat Network Hub - Professional Announcements & LinkedIn Showcases",
+"description":"Akshat Network Hub - Premier destination for professional announcements, LinkedIn showcases, and networking opportunities. Connect with professionals, share achievements, and expand your network today!",
+"icon":"https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png",
+"tier":"TIER-1",
+"status":"active",
+"createdBy":"index.htm generator",
+"checksum":"AUTO_OPTIONAL",
+"lastVerified":"AUTO_RUNTIME"
 }
 
 ],
